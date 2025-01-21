@@ -1,0 +1,54 @@
+[
+  {
+    "question": {
+      "text": "What is 2+2="
+    },
+    "answer": {
+      "correctAnswer": "4"
+    },
+    "feedback": "Breaking down the question further,<br/> (1+1) + (1+1) => 1+1+1+1 => 4<br/> Therefore 4 is the correct answer."
+  },
+  {
+    "question": {
+      "text": "What is full form of LOL?"
+    },
+    "answer": {
+      "options": [
+        "League Of Legends",
+        "Lots Of Love",
+        "Lands Of Lore",
+        "Laugh Out Loud"
+      ],
+      "correctAnswer": "Laugh Out Loud"
+    },
+    "feedback": "LOL is the slang, for Laugh Out Loud.<br/>It is used in casual communication, commonly used to express amusement online."
+  },
+  {
+    "question": {
+      "text": "How many vowels are in the image below?",
+      "imageURL": "letter_question.svg",
+      "imageAlt": "Image contains the letters -> 'AWS, A'"
+    },
+    "answer": {
+      "options": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "correctAnswer": "2"
+    },
+    "feedback": "There are 2 vowels in the image shown earlier.<br/>-The first one is the A in the 'AWS' logo.<br/>-The second one is the A in the Azure logo that looks like an upper case A"
+  },
+  {
+    "question": {
+      "text": "Which symbol is depicted in the image?",
+      "imageURL": "question_image.svg",
+      "imageAlt": "Image contains the question mark symbol"
+    },
+    "answer": {
+      "correctAnswer": "?"
+    },
+    "feedback": "This one is easy. The symbol in the image was a question mark {?}. Hope you got that right"
+  }
+]
