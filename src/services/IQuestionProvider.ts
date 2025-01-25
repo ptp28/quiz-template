@@ -5,7 +5,7 @@ export default interface IQuestionProvider {
     getCurrentQuestionIndex(): number;
     getNextQuestion(): Promise<QuestionDataType | null>;
     checkAnswer(userAnswer: string): Promise<boolean>;
-    getScore(): number;
+    getScore(): { correctAnswerCount: number, inCorrectAnswerCount: number };
     resetQuiz(): void;
     getFeedbackData(questionIndex: number): string;
 }

@@ -5,7 +5,8 @@ import IQuestionProvider from "./IQuestionProvider.ts";
 class FileQuestionProvider implements IQuestionProvider {
     private questions: QuestionDataType[] = [];
     private currentQuestionIndex: number = 0;
-    private score: number = 0;
+    private correctAnswers: number = 0;
+    private incorrectAnswerCount: number = 0;
 
     constructor(filePath: string) {
         fetch(filePath)
@@ -29,14 +30,19 @@ class FileQuestionProvider implements IQuestionProvider {
 
         const isCorrect = currentQuestion.answer.correctAnswer === userAnswer;
         if (isCorrect) {
-            this.score++;
+            this.correctAnswers++;
             this.currentQuestionIndex++;
+        } else {
+            this.incorrectAnswerCount++;
         }
         return isCorrect;
     }
 
-    getScore(): number {
-        return this.score;
+    getScore(): { correctAnswerCount: number, inCorrectAnswerCount: number } {
+        return {
+            correctAnswerCount: this.correctAnswers,
+            inCorrectAnswerCount: this.incorrectAnswerCount
+        };
     }
 
     getNumQuestions(): number {
@@ -45,7 +51,7 @@ class FileQuestionProvider implements IQuestionProvider {
 
     resetQuiz(): void {
         this.currentQuestionIndex = 0;
-        this.score = 0;
+        this.correctAnswers = 0;
     }
 
     getCurrentQuestionIndex(): number {

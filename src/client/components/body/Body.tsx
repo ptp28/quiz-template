@@ -19,7 +19,7 @@ export default function Body(props: BodyProps) {
             <Box
                 sx={{
                     margin: "0 auto",
-                    padding: "20px",
+                    paddingY: "20px",
                     display: "flex",
                     flexDirection: "column",
                     gap: "20px",

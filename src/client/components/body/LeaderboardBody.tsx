@@ -11,7 +11,7 @@ import React from "react";
 import {Card} from "@mui/material";
 
 interface Column {
-    id: 'name' | 'score' | 'time';
+    id: 'name' | 'score';
     label: string;
     minWidth?: number;
     align?: 'right';
@@ -21,39 +21,36 @@ interface Column {
 const columns: readonly Column[] = [
     {id: 'name', label: 'Name', minWidth: 170},
     {id: 'score', label: 'Score', minWidth: 100},
-    {id: 'time', label: 'Time Taken (mins)', minWidth: 100},
 ];
 
 interface Data {
     name: string;
     score: number;
-    time: number;
 }
 
 function createData(
     name: string,
     score: number,
-    time: number,
 ): Data {
-    return {name, score, time};
+    return {name, score};
 }
 
 const rows = [
-    createData('Aarav Patel', 780, 60),
-    createData('John Doe', 600, 60),
-    createData('Jane Smith', 500, 60),
-    createData('Chris Brown', 500, 60),
-    createData('Sarah Lee', 500, 60),
-    createData('Australia', 500, 60),
-    createData('David Thompson', 500, 60),
-    createData('Sample Sandra', 500, 60),
-    createData('Mei Wong', 500, 60),
-    createData('Liam O’Connor', 450, 60),
-    createData('Placeholder Pete', 400, 60),
-    createData('United Kingdom', 300, 60),
-    createData('Olivia Taylor', 90, 60),
-    createData('Fatima Ahmed', 10, 60),
-    createData('David Thompson', 10, 60),
+    createData('Aarav Patel', 780),
+    createData('John Doe', 50),
+    createData('Jane Smith', 500),
+    createData('Chris Brown', 500),
+    createData('Sarah Lee', 500),
+    createData('Australia', 500),
+    createData('David Thompson', 500),
+    createData('Sample Sandra', 500),
+    createData('Mei Wong', 500),
+    createData('Liam O’Connor', 450),
+    createData('Placeholder Pete', 400),
+    createData('United Kingdom', 300),
+    createData('Olivia Taylor', 90),
+    createData('Fatima Ahmed', 10),
+    createData('David Thompson', 10),
 ];
 
 
@@ -76,11 +73,7 @@ export default function LeaderboardBody() {
 
     return (
         <Body icon={<LeaderboardIcon/>} title={title}>
-            <Card
-                sx={{
-                    padding: "20px"
-                }}
-            >
+            <Card>
                 <TableContainer>
                     <Table stickyHeader>
                         <TableHead>

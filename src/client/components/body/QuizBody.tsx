@@ -22,6 +22,11 @@ export default function QuizBody() {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [score, setScore] = useState(0);
 
+    function calculateScore() {
+        const {correctAnswerCount, inCorrectAnswerCount} = questionService.getScore();
+        setScore((correctAnswerCount*5)-(inCorrectAnswerCount));
+    }
+
     useEffect(() => {
         const initializeQuiz = async () => {
             try {
@@ -59,7 +64,7 @@ export default function QuizBody() {
         } else {
             alert("Your answer is incorrect!");
         }
-        setScore(questionService.getScore());
+        calculateScore();
     };
 
     const dismissFeedback = async () => {
@@ -76,7 +81,7 @@ export default function QuizBody() {
             return "Loading Questions....";
         }
         if (isFinished) {
-            return `Score: ${score} / ${questionService.getNumQuestions()}`;
+            return `Score: ${score} / ${questionService.getNumQuestions()*5}`;
         }
         if (!questionData) {
             return "No question found.";
@@ -99,7 +104,7 @@ export default function QuizBody() {
                     gap: "20px",
                 }}
                 >
-                    <Grid container spacing={5}>
+                    <Grid container spacing={5} sx={{marginBottom: '20px'}}>
                         <QuestionSection
                             questionNumber={currentQuestionIndex}
                             questionData={questionData.question}/>

@@ -1,4 +1,4 @@
-import {Typography} from "@mui/material";
+import {Card, Typography} from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import Box from "@mui/material/Box";
 import {QuestionDataType} from "../../../../services/QuestionDataType.ts";
@@ -12,19 +12,18 @@ export default function QuestionSection(props: QuestionSectionProps) {
 
     return (
         <Grid size={{xs: 12}}>
-            <Typography sx={{marginY: 1}}>
+            <Typography sx={{marginY: 1}} variant={'h6'}>
                 {props.questionData.text}
             </Typography>
             {
                 (props.questionData.imageURL != undefined) &&
-                <Box
+                <Card
                     component="img"
                     sx={{
                         marginLeft: 'auto',
                         marginRight: 'auto',
                         display: 'block',
-                        border: '1px solid',
-                        height: 250,
+                        width: '100%',
                         objectFit: 'fill',
                     }}
                     src={props.questionData.imageURL}
