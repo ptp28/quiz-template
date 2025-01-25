@@ -1,6 +1,5 @@
 import {Card, Typography} from "@mui/material";
 import Grid from "@mui/material/Grid2";
-import Box from "@mui/material/Box";
 import {QuestionDataType} from "../../../../services/QuestionDataType.ts";
 
 interface QuestionSectionProps {
