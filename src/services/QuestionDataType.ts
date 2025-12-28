@@ -8,5 +8,5 @@ export type QuestionDataType = {
         options?: string[];
         correctAnswer: string;
     };
-    feedback: string;
+    hint?: string;
 };

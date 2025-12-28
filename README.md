@@ -1,1 +1,1 @@
-# Treasure-Quest
+# Quiz Template

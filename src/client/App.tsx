@@ -1,43 +1,62 @@
-import NavigationArea from "./components/navigation/NavigationArea.tsx";
-import Sidebar from "./components/navigation/Sidebar.tsx";
-import {MenuItems} from "./components/navigation/MenuItems.tsx";
-import * as React from "react";
-import HomeBody from "./components/body/HomeBody.tsx";
-import {ThemeProvider, createTheme, CssBaseline} from "@mui/material";
-import {useAppState} from "./context.tsx";
+import { useMemo, useState, useEffect } from 'react';
+import { ThemeProvider, createTheme, CssBaseline, Box, Container, AppBar, Toolbar, Typography, useMediaQuery, IconButton } from '@mui/material';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import Quiz from './components/Quiz.tsx';
 
+function App() {
+    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+    const [mode, setMode] = useState<'light' | 'dark'>(prefersDarkMode ? 'dark' : 'light');
 
-const App = () => {
+    useEffect(() => {
+        setMode(prefersDarkMode ? 'dark' : 'light');
+    }, [prefersDarkMode]);
 
-    const [bodyComponent, setBodyComponent] = React.useState<React.ReactNode>(<HomeBody/>);
-    const title = "TreasureQuest";
+    const theme = useMemo(
+        () =>
+            createTheme({
+                palette: {
+                    mode,
+                    primary: {
+                        main: mode === 'dark' ? '#288BE4' : '#091F2F'
+                    },
+                    secondary: {
+                        main: mode === 'dark' ? '#FB4D42' : '#A51C30'
+                    },
+                },
+            }),
+        [mode],
+    );
 
-    const {state} = useAppState();
-
-    const {darkMode} = state;
-
-    const theme = createTheme({
-        palette: {
-            mode: darkMode ? 'dark' : 'light',
-            primary: {
-                main: darkMode ? '#288BE4' : '#091F2F'
-            },
-            secondary: {
-                main: darkMode ? '#FB4D42' : '#A51C30'
-            },
-        },
-    });
+    const toggleColorMode = () => {
+        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+    };
 
     return (
         <ThemeProvider theme={theme}>
-            <CssBaseline/>
-            <NavigationArea
-                title={title}
-                sidebarComponent={<Sidebar menuItems={MenuItems} setBodyComponent={setBodyComponent}/>}
-                bodyComponent={bodyComponent}
-            />
+            <CssBaseline />
+            <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+                <AppBar position="static">
+                    <Toolbar>
+                        <Typography variant="h6" sx={{ flexGrow: 1 }}>
+                            Quiz Template
+                        </Typography>
+                        <IconButton onClick={toggleColorMode} color="inherit">
+                            {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+                        </IconButton>
+                    </Toolbar>
+                </AppBar>
+                <Container maxWidth="lg" sx={{
+                    flexGrow: 1,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    py: { xs: 2, md: 4 }
+                }}>
+                    <Quiz />
+                </Container>
+            </Box>
         </ThemeProvider>
-    )
+    );
 }
 
 export default App;
